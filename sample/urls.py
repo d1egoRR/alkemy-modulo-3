@@ -16,4 +16,16 @@ urlpatterns = [
         views.nuevo_producto,
         name='nuevo_producto'
     ),
+
+    path(
+        'productos/modificar/<int:producto_id>',
+        views.modificar_producto,
+        name='modificar_producto'
+    ),
+
+    path(
+        'productos/eliminar/<int:producto_id>',
+        views.eliminar_producto,
+        name='eliminar_producto'
+    ),
 ]

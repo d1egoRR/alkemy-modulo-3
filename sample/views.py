@@ -46,3 +46,32 @@ def nuevo_producto(request):
         )
 
     return render(request, "sample/nuevo_producto.html", context)
+
+
+def modificar_producto(request, producto_id):
+    marcas = Marca.objects.all()
+    producto = Producto.objects.get(id=producto_id)
+
+    context = {
+        "marcas": marcas,
+        "producto": producto
+    }
+
+    if request.POST:
+        nombre = request.POST['nombre']
+        precio = request.POST['precio']
+        marca_id = request.POST['marca']
+
+        producto.nombre = nombre
+        producto.precio = precio
+        producto.marca_id = marca_id
+        producto.save()
+
+    return render(request, "sample/modificar_producto.html", context)
+
+
+def eliminar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    producto.delete()
+
+    return HttpResponse(f"El producto con ID {producto_id} fue eliminado")

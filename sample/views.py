@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, redirect, render
 
 from sample.models import Marca, Producto
 
@@ -74,4 +74,4 @@ def eliminar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     producto.delete()
 
-    return HttpResponse(f"El producto con ID {producto_id} fue eliminado")
+    return redirect("listado_productos")

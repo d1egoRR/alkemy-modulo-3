@@ -1,29 +1,52 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Listado de Productos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 
-    <table border="1">
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Marca</th>
-      </tr>
+    <div class="container">
 
-      {% for producto in productos %}
+        <a href="{% url 'nuevo_producto' %}">
+            Agregar nuevo producto
+        </a>
+
+        <br>
+        <br>
+
+        <table class="table">
           <tr>
-            <td>{{ producto.id }}</td>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.precio }}</td>
-            <td>{{ producto.marca }}</td>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Acciones</th>
           </tr>
-      {% endfor %}
 
-    </table>
+          {% for producto in productos %}
+              <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.marca }}</td>
+                <td>
+                    <a href="{% url 'modificar_producto' producto.id %}">
+                        Modificar
+                    </a>
+                    |
+                    <a href="{% url 'eliminar_producto' producto.id %}">
+                        Eliminar
+                    </a>
+                </td>
+              </tr>
+          {% endfor %}
+
+        </table>
+
+    </div>
 
 </body>
 </html>

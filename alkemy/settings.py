@@ -57,6 +57,17 @@ ROOT_URLCONF = 'alkemy.urls'
 
 TEMPLATES = [
     {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ["templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'alkemy.jinja2.ini_jinja2',
+            'auto_reload': DEBUG,
+            'autoescape': True
+
+        },
+    },
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,

@@ -1,38 +1,46 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Modificar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 
-  <form method="post">
+  <div class="container">
 
-    {% csrf_token %}
+      <form method="post" class="form-inline">
 
-    Nombre: <input type="text" name="nombre" value="{{ producto.nombre }}">
-    <br><br>
-    Precio: <input type="number" name="precio" value="{{ producto.precio|floatformat }}">
-    <br><br>
+        {% csrf_token %}
 
-    Marca:
-    <select name="marca">
+        <div class="form-group mb-2 col col-lg-6">
+            Nombre: <input type="text" name="nombre" value="{{ producto.nombre }}" class="form-control">
+            Precio: <input type="number" name="precio" value="{{ producto.precio|floatformat }}" class="form-control">
+            Marca:
+            <select name="marca" class="form-control">
 
-      {% for marca in marcas %}
-          {% if producto.marca == marca %}
-              <option value="{{ marca.id }}" SELECTED>{{ marca.nombre }}</option>
-          {% else %}
-              <option value="{{ marca.id }}">{{ marca.nombre }}</option>
-          {% endif %}
-      {% endfor %}
+              {% for marca in marcas %}
+                  {% if producto.marca == marca %}
+                      <option value="{{ marca.id }}" SELECTED>{{ marca.nombre }}</option>
+                  {% else %}
+                      <option value="{{ marca.id }}">{{ marca.nombre }}</option>
+                  {% endif %}
+              {% endfor %}
 
-    </select>
+            </select>
 
-    <br><br>
+        </div>
 
-    <input type="submit" value="Actualizar">
+        <input type="submit" value="Actualizar" class="btn btn-primary">
 
-  </form>
+      </form>
+
+      <a href="{% url 'listado_productos' %}">
+          Volver al Listado
+      </a>
+
+  </div>
 
 </body>
 </html>

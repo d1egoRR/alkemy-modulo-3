@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Producto</title>
+</head>
+<body>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    Nombre: <input type="text" name="nombre" value="{{ producto.nombre }}">
+    <br><br>
+    Precio: <input type="number" name="precio" value="{{ producto.precio|floatformat }}">
+    <br><br>
+
+    Marca:
+    <select name="marca">
+
+      {% for marca in marcas %}
+          {% if producto.marca == marca %}
+              <option value="{{ marca.id }}" SELECTED>{{ marca.nombre }}</option>
+          {% else %}
+              <option value="{{ marca.id }}">{{ marca.nombre }}</option>
+          {% endif %}
+      {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <input type="submit" value="Actualizar">
+
+  </form>
+
+</body>
+</html>

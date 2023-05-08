@@ -75,3 +75,19 @@ def eliminar_producto(request, producto_id):
     producto.delete()
 
     return redirect("listado_productos")
+
+
+def desactivar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    producto.activo = False
+    producto.save()
+
+    return redirect("listado_productos")
+
+
+def activar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    producto.activo = True
+    producto.save()
+
+    return redirect("listado_productos")

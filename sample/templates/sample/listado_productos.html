@@ -40,6 +40,16 @@
                     <a href="{% url 'eliminar_producto' producto.id %}">
                         Eliminar
                     </a>
+                    |
+                    {% if producto.activo %}
+                        <a href="{% url 'desactivar_producto' producto.id %}">
+                            Desactivar
+                        </a>
+                    {% else %}
+                        <a href="{% url 'activar_producto' producto.id %}">
+                            Activar
+                        </a>
+                    {% endif %}
                 </td>
               </tr>
           {% endfor %}

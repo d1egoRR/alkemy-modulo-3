@@ -28,4 +28,14 @@ urlpatterns = [
         views.eliminar_producto,
         name='eliminar_producto'
     ),
+    path(
+        'productos/desactivar/<int:producto_id>',
+        views.desactivar_producto,
+        name='desactivar_producto'
+    ),
+    path(
+        'productos/activar/<int:producto_id>',
+        views.activar_producto,
+        name='activar_producto'
+    ),
 ]

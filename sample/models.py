@@ -16,6 +16,7 @@ class Producto(models.Model):
         related_name="productos",
         on_delete=models.CASCADE,
     )
+    activo = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.nombre} ({self.marca})"
